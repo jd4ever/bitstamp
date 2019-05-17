@@ -139,7 +139,7 @@ Bitstamp.prototype._post = function(market, action, callback, args, legacy_endpo
 
   var nonce = this._generateNonce();
   var message = nonce + this.client_id + this.key;
-  var signer = crypto.createHmac('sha256', new Buffer(this.secret, 'utf8'));
+  var signer = crypto.createHmac('sha256', new Buffer.from(this.secret, 'utf8'));
   var signature = signer.update(message).digest('hex').toUpperCase();
 
   args = _.extend({
